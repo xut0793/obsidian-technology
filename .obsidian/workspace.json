@@ -1,0 +1,252 @@
+{
+  "main": {
+    "id": "eccf5264266b6ff9",
+    "type": "split",
+    "children": [
+      {
+        "id": "0928fd30789020f5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dbbc15c643001442",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "02-Domain/AI/note/Prompt.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Prompt"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9489ab40179efbaa",
+    "type": "split",
+    "children": [
+      {
+        "id": "e948d096b2c66448",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1d47d6fa19d0f4eb",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "2b3c8caf8c7b17ee",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "377adb0482e03570",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 343.5
+  },
+  "right": {
+    "id": "653c6704ace6c4dc",
+    "type": "split",
+    "children": [
+      {
+        "id": "782232636ef105ff",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b51a900cc1d73c43",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "02-Domain/AI/note/MCP.md",
+                "collapseAll": true,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "MCP 的反向链接列表"
+            }
+          },
+          {
+            "id": "08d9ab89bb1574e9",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "欢迎.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "欢迎 的出链列表"
+            }
+          },
+          {
+            "id": "9ec820a9772f4bee",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "5fc78286d611d73a",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "fbedf5261a2ce594",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          },
+          {
+            "id": "ea7e3b0d5a185a98",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "02-Domain/AI/note/MCP.md"
+              },
+              "icon": "lucide-info",
+              "title": "MCP的笔记属性"
+            }
+          },
+          {
+            "id": "d0380b42bafbb1f7",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "02-Domain/AI/note/Prompt.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Prompt 的大纲"
+            }
+          }
+        ],
+        "currentTab": 6
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:新建数据库": false,
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "templater-obsidian:Templater": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "dbbc15c643001442",
+  "lastOpenFiles": [
+    "01-Inbox/xapi 智能体构想.md",
+    "02-Domain/AI/roadmap.md",
+    "02-Domain/AI/note/Skills.md",
+    "02-Domain/AI/note/A2A.md",
+    "02-Domain/AI/note/MCP.md",
+    "02-Domain/AI/note/RAG.md",
+    "02-Domain/AI/note/Prompt.md",
+    "01-Inbox/如果你无法简洁找表达你的想法，那只说明你还不够了解它.md",
+    "01-Inbox/阿里内网万言离职书《置身钉内》原文.md",
+    "02-Domain/python/note/结合 AI 的接口自动化项目构想.md",
+    "02-Domain/python/note/API接口自动化项目架构.md",
+    "02-Domain/python/note/pytest.md",
+    "02-Domain/python/note/requsts 统一封装注意事项.md",
+    "04-Asset/42-template/template-tech-note.md",
+    "02-Domain/python/note",
+    "2026-05-30.md",
+    "README.md.md",
+    "01-Inbox/Inbox.md",
+    "未命名.base",
+    "01-Inbox/如何学习一门编程语言.md",
+    "00-Home/home.md",
+    "未命名.canvas",
+    "Excalidraw/Drawing 2026-05-29 16.54.59.excalidraw.md",
+    "02-Domain/AI/project/ai-technology-structure-diagram/diagram.bak.html",
+    "02-Domain/AI/project/ai-technology-structure-diagram/diagram copy.html",
+    "02-Domain/AI/project/ai-technology-structure-diagram/arch.css",
+    "02-Domain/AI/project/ai-technology-structure-diagram/diagram.html",
+    "02-Domain/AI/project/ai-technology-structure-diagram",
+    "02-Domain/AI/project/ai-",
+    "02-Domain/AI/project/新建文件夹",
+    "Excalidraw/Drawing 2026-05-27 16.59.36.excalidraw.md",
+    "Excalidraw/Drawing 2026-05-27 16.06.27.excalidraw.md",
+    "Excalidraw",
+    "02-Domain/AI/asset/未命名.canvas",
+    "01-Inbox/依打卡 APP.md",
+    "01-Inbox/程序设计是组装代码，系统设计是组装服务.md",
+    "01-Inbox/后端学习内容.md",
+    "学习/TODO.md"
+  ]
+}

@@ -1,0 +1,570 @@
+.arc-container {
+  width: 1000px;
+  margin: 0 auto;
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  .strong {
+    font-weight: bold;
+  }
+
+  /* 顶部模块样式 */
+  .top-modules {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    margin-bottom: 5px;
+  }
+
+  .module {
+    /* background-color: #f8f9fe; */
+    border-radius: 5px;
+    padding: 0.8rem;
+    border: 1px dashed #d3e4f9;
+  }
+
+  .module-header {
+    background-color: #f0f3ff;
+    margin: -5px;
+    margin-bottom: 12px;
+    padding: 8px;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .module h3 {
+    color: #039be5; /** 集成后，替换为变量：var(--active-color);*/
+    font-size: 0.9em;
+    text-align: center;
+    position: inherit;
+    border-bottom: inherit;
+    font-weight: 600;
+  }
+
+  .module ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 5px;
+  }
+
+  .module li {
+    color: #6b7280;
+    padding: 8px 0;
+    position: relative;
+    padding-left: 12px;
+    font-size: 0.75em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .module li:before {
+    content: "•";
+    color: #4080ff;
+    position: absolute;
+    left: 0;
+  }
+
+  /* 底部概念部分样式 */
+  .bottom-section {
+    /* background-color: #f8f9fe; */
+    border-radius: 5px;
+    display: flex;
+    border: 1px dashed #d3e4f9;
+  }
+
+  .concept-title {
+    width: 100px;
+    background-color: #f0f3ff;
+    padding: 12px;
+    border-radius: 5px 0 0 5px;
+    margin-right: 25px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500 !important;
+  }
+
+  .concept-title h3 {
+    color: #039be5; /** 集成后，替换为变量：var(--active-color);*/
+    font-size: 0.9em;
+    line-height: 1.4;
+    position: inherit;
+    border-bottom: inherit;
+    font-weight: 600;
+  }
+
+  .concepts {
+    flex: 1;
+    padding-left: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .concept-row {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 6px;
+  }
+
+  .concept-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .concept {
+    padding: 4px 12px;
+    /* border-radius: 4px; */
+    color: #6b7280;
+    font-size: 0.75em;
+    /* border: 1px solid #eee; */
+    /* white-space: nowrap; */
+  }
+
+  /* 响应式设计 */
+  @media (max-width: 1024px) {
+    .top-modules {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .top-modules {
+      grid-template-columns: 1fr;
+    }
+
+    .bottom-section {
+      flex-direction: column;
+    }
+
+    .concept-title {
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .concept-row {
+      flex-wrap: wrap;
+    }
+
+    .concept {
+      flex: 1 1 calc(50% - 6px);
+    }
+  }
+
+  /** 以下 框架图 **/
+
+  /* 层级通用样式 */
+  .layer {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .layer-title {
+    width: 80px;
+    background-color: #64b5f6;
+    color: white;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .layer-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 2px;
+    gap: 3px;
+  }
+
+  /* 技术层需要特殊处理为横向排列 */
+  .layer:nth-child(3) .layer-content {
+    flex-direction: row;
+  }
+
+  /* 虚线框通用样式 */
+  .dashed-box {
+    border: 1px dashed #d3e4f9;
+    padding: 5px 6px;
+    border-radius: 2px;
+  }
+
+  .box-title {
+    color: #039be5;
+    font-weight: bold;
+    text-align: center;
+    font-size: 0.9em;
+    white-space: nowrap;
+    min-width: fit-content;
+
+    i {
+      font-size: 0.5em;
+      color: #aeb2b9;
+    }
+  }
+
+  /* 应用层样式修改 */
+  .app-row {
+    display: flex;
+    gap: 5px;
+    align-items: stretch;
+  }
+  .app-list {
+    /* 添加 flex 布局实现垂直居中 */
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中（虽然已经有text-align:center，这样更完整） */
+    flex: 2;
+  }
+  .app-row .dashed-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 应用列表样式 */
+  .app-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+
+  /* 框架工具样式 */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
+
+  /* 概念和用法样式 */
+  .concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+
+  /* 确保所有内容不换行 */
+  .app-row
+    .dashed-box
+    div:not(.box-title):not(.app-grid):not(.tools-grid):not(.concepts-grid) {
+    white-space: nowrap;
+  }
+
+  /* 平台层样式 */
+
+  .platform-lower {
+    flex: 1;
+    display: flex;
+    gap: 5px;
+  }
+
+  .platform-lower-part {
+    flex: 1;
+    display: flex;
+    gap: 5px;
+  }
+
+  /* ========== 在这里添加新代码 ========== */
+
+  /* 左边:固定宽度 */
+  .platform-lower-part:first-child {
+    flex: 0 0 auto;
+  }
+
+  /* 右边:占据剩余空间 */
+  .platform-lower-part:last-child {
+    flex: 1;
+  }
+
+  /* 右边的两个box平分宽度 */
+  .platform-lower-part:last-child .dashed-box.width-padding0 {
+    flex: 1;
+  }
+
+  /* 让内容均匀分布 */
+  .training-content {
+    white-space: nowrap !important;
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  /* 让每个item平分宽度 */
+  .training-content .item-span {
+    flex: 1;
+    text-align: center;
+  }
+
+  /* ========== 新代码结束 ========== */
+
+  .width-padding0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .main-title-text {
+    font-size: 1rem;
+    color: #6b7280;
+    font-weight: bold;
+    white-space: nowrap !important;
+    padding: 4px 8px !important;
+    /*display: flex;*/
+    align-items: center; /* 垂直居中 */
+    /*justify-content: center;  */
+    width: 110px;
+  }
+
+  /* 平台层基础模型样式修改 */
+  .base-model {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .model-header {
+    color: #039be5 !important;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .model-list {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 35px; /* 只设置左右间距 */
+    row-gap: 10px; /* 保持上下间距不变 */
+  }
+
+  .model-list span {
+    color: #6b7280;
+    font-size: 0.75em;
+  }
+
+  /* 技术层样式 */
+  .tech-left {
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .tech-upper {
+    display: flex;
+    gap: 3px;
+  }
+
+  .tech-upper .dashed-box {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+
+  .tech-lower {
+    display: flex;
+    gap: 3px;
+  }
+
+  .transformer-section {
+    flex: 7;
+    background-color: #f0f3ff;
+    padding: 5px;
+    border-radius: 2px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  /* Transformer标题样式 */
+  .transformer-section .box-title {
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center;
+  }
+
+  /* Transformer内容区域样式 */
+  .transformer-content {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-left: 10px;
+  }
+
+  .transformer-variants {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    justify-content: space-around;
+  }
+
+  .tech-right {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .tech-right .dashed-box {
+    flex: 1;
+  }
+
+  .analysis-content {
+    display: flex;
+    flex-direction: column;
+    gap: 7.5px;
+    /* padding-bottom: 5px;*/
+  }
+  /* 基础层样式修改 */
+  .base-upper {
+    display: flex;
+    gap: 3px;
+  }
+
+  .base-upper .dashed-box {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    padding-left: 10px;
+  }
+
+  .base-upper .dashed-box:first-child {
+    flex: 2;
+  }
+  .base-upper .dashed-box:last-child {
+    flex: 2;
+  }
+
+  .algo-learning {
+    flex: 5;
+  }
+
+  /* 基础学科部分样式 */
+  .horizontal-section {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .horizontal-list {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    border: none;
+    padding: 0;
+  }
+  .horizontal-item {
+    padding: 2px 5px !important;
+  }
+
+  /* 删除之前的相关样式 */
+  /* 删除 .box-title 对基础模型的应用 */
+  /* 修改之前的 .model-list 相关样式 */
+
+  /* 算法学习部分样式 */
+  .algo-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .col-header {
+    color: #6b7280;
+    font-weight: bold;
+    font-size: 0.8em;
+    margin-bottom: 2px;
+  }
+
+  .algo-col div:not(.col-header) {
+    white-space: nowrap;
+    padding: 2px 4px;
+    font-size: 0.7em;
+    color: #6b7280;
+  }
+
+  /* 算力、数据部分的内容列表样式 */
+  .content-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  /* 算法学习部分的内容样式 */
+  .algo-columns {
+    flex: 1;
+    display: flex;
+    gap: 10px;
+  }
+
+  .base-lower {
+    background-color: #f0f3ff;
+  }
+
+  /* 通用元素样式 */
+  .dashed-box
+    div:not(.box-title):not(.tech-grid):not(.model-list):not(.tool-content):not(
+      .compute-content
+    ):not(.learning-content):not(.framework-content):not(.data-content):not(
+      .analysis-content
+    ):not(.transformer-content):not(.algo-col):not(.framework-col) {
+    padding: 2px 8px;
+    border-radius: 2px;
+    color: #777;
+    font-size: 0.75rem;
+  }
+
+  .tech-grid div,
+  .model-list div,
+  .tool-content div,
+  .compute-content div,
+  .learning-content div,
+  .framework-content div,
+  .data-content div,
+  .analysis-content div,
+  .transformer-content div,
+  .horizontal-list div,
+  .variant-box {
+    padding: 4px 15px;
+    border-radius: 2px;
+    color: #6b7280;
+    font-size: 0.75em;
+  }
+  .box-bg {
+    background-color: #f0f3ff;
+    line-height: 42px;
+    font-weight: bold;
+    font-size: 0.8em;
+    color: #039be5;
+  }
+  /* 响应式设计 */
+  @media (max-width: 1024px) {
+    .container {
+      font-size: 0.9em;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      font-size: 0.8em;
+    }
+  }
+
+  .reference-link-container {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.8em;
+    color: #6b7280;
+  }
+
+  .reference-link a {
+    color: #6b7280;
+  }
+}

@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 知识图谱</title>
+    <!-- <link rel="stylesheet" href="arch.css" /> -->
+    <style>
+      .arc-container {
+        width: 1000px;
+        margin: 0 auto;
+        * {
+          margin: 0;
+          padding: 0;
+        }
+        .strong {
+          font-weight: bold;
+        }
+
+        /* 顶部模块样式 */
+        .top-modules {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 5px;
+          margin-bottom: 5px;
+        }
+
+        .module {
+          /* background-color: #f8f9fe; */
+          border-radius: 5px;
+          padding: 0.8rem;
+          border: 1px dashed #d3e4f9;
+        }
+
+        .module-header {
+          background-color: #f0f3ff;
+          margin: -5px;
+          margin-bottom: 12px;
+          padding: 8px;
+          border-radius: 5px 5px 0 0;
+        }
+
+        .module h3 {
+          color: #039be5; /** 集成后，替换为变量：var(--active-color);*/
+          font-size: 0.9em;
+          text-align: center;
+          position: inherit;
+          border-bottom: inherit;
+          font-weight: 600;
+        }
+
+        .module ul {
+          list-style: none;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0 5px;
+        }
+
+        .module li {
+          color: #6b7280;
+          padding: 8px 0;
+          position: relative;
+          padding-left: 12px;
+          font-size: 0.75em;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .module li:before {
+          content: "•";
+          color: #4080ff;
+          position: absolute;
+          left: 0;
+        }
+
+        /* 底部概念部分样式 */
+        .bottom-section {
+          /* background-color: #f8f9fe; */
+          border-radius: 5px;
+          display: flex;
+          border: 1px dashed #d3e4f9;
+        }
+
+        .concept-title {
+          width: 100px;
+          background-color: #f0f3ff;
+          padding: 12px;
+          border-radius: 5px 0 0 5px;
+          margin-right: 25px;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 500 !important;
+        }
+
+        .concept-title h3 {
+          color: #039be5; /** 集成后，替换为变量：var(--active-color);*/
+          font-size: 0.9em;
+          line-height: 1.4;
+          position: inherit;
+          border-bottom: inherit;
+          font-weight: 600;
+        }
+
+        .concepts {
+          flex: 1;
+          padding-left: 12px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+
+        .concept-row {
+          display: flex;
+          gap: 50px;
+          margin-bottom: 6px;
+        }
+
+        .concept-row:last-child {
+          margin-bottom: 0;
+        }
+
+        .concept {
+          padding: 4px 12px;
+          /* border-radius: 4px; */
+          color: #6b7280;
+          font-size: 0.75em;
+          /* border: 1px solid #eee; */
+          /* white-space: nowrap; */
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+          .top-modules {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .top-modules {
+            grid-template-columns: 1fr;
+          }
+
+          .bottom-section {
+            flex-direction: column;
+          }
+
+          .concept-title {
+            width: 100%;
+            margin-bottom: 12px;
+          }
+
+          .concept-row {
+            flex-wrap: wrap;
+          }
+
+          .concept {
+            flex: 1 1 calc(50% - 6px);
+          }
+        }
+
+        /** 以下 框架图 **/
+
+        /* 层级通用样式 */
+        .layer {
+          display: flex;
+          margin-bottom: 10px;
+        }
+
+        .layer-title {
+          width: 80px;
+          background-color: #64b5f6;
+          color: white;
+          padding: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+          flex-shrink: 0;
+        }
+
+        .layer-content {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          padding-left: 2px;
+          gap: 3px;
+        }
+
+        /* 技术层需要特殊处理为横向排列 */
+        .layer:nth-child(3) .layer-content {
+          flex-direction: row;
+        }
+
+        /* 虚线框通用样式 */
+        .dashed-box {
+          border: 1px dashed #d3e4f9;
+          padding: 5px 6px;
+          border-radius: 2px;
+        }
+
+        .box-title {
+          color: #039be5;
+          font-weight: bold;
+          text-align: center;
+          font-size: 0.9em;
+          white-space: nowrap;
+          min-width: fit-content;
+
+          i {
+            font-size: 0.5em;
+            color: #aeb2b9;
+          }
+        }
+
+        /* 应用层样式修改 */
+        .app-row {
+          display: flex;
+          gap: 5px;
+          align-items: stretch;
+        }
+        .app-list {
+          /* 添加 flex 布局实现垂直居中 */
+          display: flex;
+          align-items: center; /* 垂直居中 */
+          justify-content: center; /* 水平居中（虽然已经有text-align:center，这样更完整） */
+          flex: 2;
+        }
+        .app-row .dashed-box {
+          display: flex;
+          flex-direction: column;
+        }
+
+        /* 应用列表样式 */
+        .app-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 5px;
+        }
+
+        /* 框架工具样式 */
+        .tools-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 5px;
+        }
+
+        /* 概念和用法样式 */
+        .concepts-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 5px;
+        }
+
+        /* 确保所有内容不换行 */
+        .app-row
+          .dashed-box
+          div:not(.box-title):not(.app-grid):not(.tools-grid):not(
+            .concepts-grid
+          ) {
+          white-space: nowrap;
+        }
+
+        /* 平台层样式 */
+
+        .platform-lower {
+          flex: 1;
+          display: flex;
+          gap: 5px;
+        }
+
+        .platform-lower-part {
+          flex: 1;
+          display: flex;
+          gap: 5px;
+        }
+
+        /* ========== 在这里添加新代码 ========== */
+
+        /* 左边:固定宽度 */
+        .platform-lower-part:first-child {
+          flex: 0 0 auto;
+        }
+
+        /* 右边:占据剩余空间 */
+        .platform-lower-part:last-child {
+          flex: 1;
+        }
+
+        /* 右边的两个box平分宽度 */
+        .platform-lower-part:last-child .dashed-box.width-padding0 {
+          flex: 1;
+        }
+
+        /* 让内容均匀分布 */
+        .training-content {
+          white-space: nowrap !important;
+          flex: 1;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+        }
+
+        /* 让每个item平分宽度 */
+        .training-content .item-span {
+          flex: 1;
+          text-align: center;
+        }
+
+        /* ========== 新代码结束 ========== */
+
+        .width-padding0 {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+
+        .main-title-text {
+          font-size: 1rem;
+          color: #6b7280;
+          font-weight: bold;
+          white-space: nowrap !important;
+          padding: 4px 8px !important;
+          /*display: flex;*/
+          align-items: center; /* 垂直居中 */
+          /*justify-content: center;  */
+          width: 110px;
+        }
+
+        /* 平台层基础模型样式修改 */
+        .base-model {
+          display: flex;
+          gap: 40px;
+          align-items: center;
+          justify-content: flex-start;
+        }
+
+        .model-header {
+          color: #039be5 !important;
+          font-weight: bold;
+          white-space: nowrap;
+        }
+
+        .model-list {
+          flex: 1;
+          display: flex;
+          flex-wrap: wrap;
+          column-gap: 35px; /* 只设置左右间距 */
+          row-gap: 10px; /* 保持上下间距不变 */
+        }
+
+        .model-list span {
+          color: #6b7280;
+          font-size: 0.75em;
+        }
+
+        /* 技术层样式 */
+        .tech-left {
+          flex: 5;
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+        }
+
+        .tech-upper {
+          display: flex;
+          gap: 3px;
+        }
+
+        .tech-upper .dashed-box {
+          flex: 1;
+          min-width: 0;
+        }
+
+        .tech-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 5px;
+        }
+
+        .tech-lower {
+          display: flex;
+          gap: 3px;
+        }
+
+        .transformer-section {
+          flex: 7;
+          background-color: #f0f3ff;
+          padding: 5px;
+          border-radius: 2px;
+          display: flex;
+          gap: 10px;
+          align-items: center;
+        }
+
+        /* Transformer标题样式 */
+        .transformer-section .box-title {
+          display: flex;
+          align-items: center; /* 垂直居中 */
+          justify-content: center;
+        }
+
+        /* Transformer内容区域样式 */
+        .transformer-content {
+          flex: 1;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          margin-left: 10px;
+        }
+
+        .transformer-variants {
+          flex: 4;
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+          justify-content: space-around;
+        }
+
+        .tech-right {
+          flex: 1;
+          min-width: 120px;
+        }
+
+        .tech-right .dashed-box {
+          flex: 1;
+        }
+
+        .analysis-content {
+          display: flex;
+          flex-direction: column;
+          gap: 7.5px;
+          /* padding-bottom: 5px;*/
+        }
+        /* 基础层样式修改 */
+        .base-upper {
+          display: flex;
+          gap: 3px;
+        }
+
+        .base-upper .dashed-box {
+          display: flex;
+          gap: 6px;
+          align-items: center;
+          padding-left: 10px;
+        }
+
+        .base-upper .dashed-box:first-child {
+          flex: 2;
+        }
+        .base-upper .dashed-box:last-child {
+          flex: 2;
+        }
+
+        .algo-learning {
+          flex: 5;
+        }
+
+        /* 基础学科部分样式 */
+        .horizontal-section {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+        }
+
+        .horizontal-list {
+          flex: 1;
+          display: flex;
+          flex-wrap: wrap;
+          border: none;
+          padding: 0;
+        }
+        .horizontal-item {
+          padding: 2px 5px !important;
+        }
+
+        /* 删除之前的相关样式 */
+        /* 删除 .box-title 对基础模型的应用 */
+        /* 修改之前的 .model-list 相关样式 */
+
+        /* 算法学习部分样式 */
+        .algo-col {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+        }
+
+        .col-header {
+          color: #6b7280;
+          font-weight: bold;
+          font-size: 0.8em;
+          margin-bottom: 2px;
+        }
+
+        .algo-col div:not(.col-header) {
+          white-space: nowrap;
+          padding: 2px 4px;
+          font-size: 0.7em;
+          color: #6b7280;
+        }
+
+        /* 算力、数据部分的内容列表样式 */
+        .content-list {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+        }
+
+        /* 算法学习部分的内容样式 */
+        .algo-columns {
+          flex: 1;
+          display: flex;
+          gap: 10px;
+        }
+
+        .base-lower {
+          background-color: #f0f3ff;
+        }
+
+        /* 通用元素样式 */
+        .dashed-box
+          div:not(.box-title):not(.tech-grid):not(.model-list):not(
+            .tool-content
+          ):not(.compute-content):not(.learning-content):not(
+            .framework-content
+          ):not(.data-content):not(.analysis-content):not(
+            .transformer-content
+          ):not(.algo-col):not(.framework-col) {
+          padding: 2px 8px;
+          border-radius: 2px;
+          color: #777;
+          font-size: 0.75rem;
+        }
+
+        .tech-grid div,
+        .model-list div,
+        .tool-content div,
+        .compute-content div,
+        .learning-content div,
+        .framework-content div,
+        .data-content div,
+        .analysis-content div,
+        .transformer-content div,
+        .horizontal-list div,
+        .variant-box {
+          padding: 4px 15px;
+          border-radius: 2px;
+          color: #6b7280;
+          font-size: 0.75em;
+        }
+        .box-bg {
+          background-color: #f0f3ff;
+          line-height: 42px;
+          font-weight: bold;
+          font-size: 0.8em;
+          color: #039be5;
+        }
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+          .container {
+            font-size: 0.9em;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .container {
+            font-size: 0.8em;
+          }
+        }
+
+        .reference-link-container {
+          text-align: center;
+          margin-top: 10px;
+          font-size: 0.8em;
+          color: #6b7280;
+        }
+
+        .reference-link a {
+          color: #6b7280;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="arc-container">
+      <!-- 应用层 -->
+      <div class="layer">
+        <div class="layer-title">应用层</div>
+        <div class="layer-content">
+          <div class="dashed-box horizontal-section">
+            <div class="box-title">AI产品</div>
+            <div class="horizontal-list">
+              <div>ChatGPT</div>
+              <div>Claude Code</div>
+              <div>Codex</div>
+              <div>OpenClaw</div>
+              <div>Copilot</div>
+              <div>Cursor</div>
+              <div>通义千问</div>
+              <div>Stable Diffusion</div>
+              <div>Midjourney</div>
+              <div>ComfyUI</div>
+              <div>Dify</div>
+              <div>Coze</div>
+              <div>...</div>
+            </div>
+          </div>
+          <div class="dashed-box horizontal-section">
+            <div class="box-title">开发框架</div>
+            <div class="horizontal-list">
+              <div>
+                <a target="_blank">LangChain</a>
+              </div>
+              <div>LangGraph</div>
+              <div>DeepAgents</div>
+              <div>
+                <a target="_blank">LlamaIndex</a>
+              </div>
+              <div>ClaudeCode SDK</div>
+              <div>OpenAI SDK</div>
+              <div>...</div>
+            </div>
+          </div>
+          <div class="dashed-box horizontal-section">
+            <div class="box-title">核心概念</div>
+            <div class="horizontal-list">
+              <div>
+                <a target="_blank">Prompt</a>
+              </div>
+              <div><a target="_blank">RAG</a></div>
+              <div>Embedding</div>
+              <div>Function Call</div>
+              <div>MCP</div>
+              <div>A2A</div>
+              <div>Skills</div>
+              <div>Agent</div>
+              <div>Multi-Agent</div>
+              <div>Prompt Engineering</div>
+              <div>Context Engineering</div>
+              <div>Harness Engineering</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 模型层 -->
+      <div class="layer">
+        <div class="layer-title">模型层</div>
+        <div class="layer-content">
+          <div class="dashed-box base-model">
+            <div class="model-header">主流大模型</div>
+            <div class="model-list">
+              <span>GPT-4/4o/o1/o3</span>
+              <span>Claude 3.5/4.5</span>
+              <span>Gemini 2.0</span>
+              <span>Llama 3/3.1/3.3</span>
+              <span>Qwen3/QwQ</span>
+              <span>DeepSeek-V3/R1</span>
+              <span>GLM-4/GLM-Z1</span>
+              <span>...</span>
+            </div>
+          </div>
+
+          <div class="platform-lower">
+            <div class="platform-lower-part">
+              <div class="dashed-box">
+                <div class="box-title">模型训练</div>
+                <div class="tech-grid">
+                  <div class="item-span">预训练</div>
+                  <div class="item-span">监督微调(SFT)</div>
+                  <div class="item-span">RLHF</div>
+                  <div class="item-span">DPO</div>
+                  <div class="item-span">PPO</div>
+                  <div class="item-span">RLAIF</div>
+                </div>
+              </div>
+              <div class="dashed-box">
+                <div class="box-title">推理优化</div>
+                <div class="tech-grid">
+                  <div class="item-span">vLLM</div>
+                  <div class="item-span">TensorRT-LLM</div>
+                  <br />
+                  <div class="item-span">量化(GPTQ/AWQ)</div>
+                  <div class="item-span">KV Cache</div>
+                </div>
+              </div>
+              <div class="dashed-box">
+                <div class="box-title">方向</div>
+                <div class="tech-grid">
+                  <div class="item-span">安全</div>
+                  <div class="item-span">伦理</div>
+                  <div class="item-span">多模态</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 技术层 -->
+      <div class="layer">
+        <div class="layer-title">技术层</div>
+        <div class="layer-content">
+          <div class="tech-left">
+            <div class="tech-upper">
+              <div class="dashed-box">
+                <div class="box-title">
+                  <a target="_blank">自然语言处理</a>
+                  <i>文本识别</i>
+                </div>
+                <div class="tech-grid">
+                  <div class="item-span">
+                    <a target="_blank">NLU</a>
+                  </div>
+                  <div class="item-span">
+                    <a target="_blank">分词</a>
+                  </div>
+                  <div class="item-span">
+                    <a target="_blank">词性标注</a>
+                  </div>
+                  <div class="item-span">
+                    <a target="_blank">NLG</a>
+                  </div>
+                  <div class="item-span">
+                    <a target="_blank">文本挖掘</a>
+                  </div>
+                  <div class="item-span">
+                    <a target="_blank">词嵌入</a>
+                  </div>
+                  <div class="item-span">
+                    <a target="_blank">Seq2Seq</a>
+                  </div>
+                  <div class="item-span">
+                    <a target="_blank">向量化</a>
+                  </div>
+                  <div class="item-span">
+                    <a target="_blank">NER</a>
+                  </div>
+                  <div class="item-span">情感分析</div>
+                  <div class="item-span">机器翻译</div>
+                  <div class="item-span">...</div>
+                </div>
+              </div>
+              <div class="dashed-box">
+                <div class="box-title">
+                  <a target="_blank">计算机视觉</a>
+                  <i>图像识别</i>
+                </div>
+                <div class="tech-grid">
+                  <div class="item-span">图像分类</div>
+                  <div class="item-span">目标检测</div>
+                  <div class="item-span">
+                    <a target="_blank">人脸识别</a>
+                  </div>
+                  <div class="item-span">语义分割</div>
+                  <div class="item-span">实例分割</div>
+                  <div class="item-span">图像生成</div>
+                  <div class="item-span">图像增强</div>
+                  <div class="item-span">视频理解</div>
+                  <div class="item-span">OCR识别</div>
+                  <div class="item-span">3D重建</div>
+                  <div class="item-span">姿态估计</div>
+                  <div class="item-span">...</div>
+                </div>
+              </div>
+              <div class="dashed-box">
+                <div class="box-title">
+                  <a target="_blank">语音技术</a>
+                  <i>声音识别</i>
+                </div>
+                <div class="tech-grid">
+                  <div class="item-span">
+                    <a target="_blank">语音识别(ASR)</a>
+                  </div>
+                  <div class="item-span">
+                    <a target="_blank">语音合成(TTS)</a>
+                  </div>
+                  <div class="item-span">语音增强</div>
+                  <div class="item-span">语音转换</div>
+                  <div class="item-span">语音翻译</div>
+                  <div class="item-span">声纹识别</div>
+                  <div class="item-span">情感识别</div>
+                  <div class="item-span">语音克隆</div>
+                  <div class="item-span">降噪处理</div>
+                  <div class="item-span">音频分离</div>
+                  <div class="item-span">音乐生成</div>
+                  <div class="item-span">...</div>
+                </div>
+              </div>
+              <div class="dashed-box">
+                <div class="box-title">
+                  <a target="_blank">视频技术</a>
+                  <i>视频识别</i>
+                </div>
+                <div class="tech-grid">
+                  <div class="item-span">
+                    <a target="_blank">视频识别(VSR)</a>
+                  </div>
+                  <div class="item-span">
+                    <a target="_blank">视频合成(VTS)</a>
+                  </div>
+                  <div class="item-span">视频生成</div>
+                  <div class="item-span">...</div>
+                </div>
+              </div>
+            </div>
+            <div class="dashed-box horizontal-section">
+              <div class="box-title">推理技术</div>
+              <div class="horizontal-list">
+                <div>Chain of Thought</div>
+                <div>Tree of Thoughts</div>
+                <div>Self-Consistency</div>
+                <div>ReAct</div>
+                <div>Reflection</div>
+                <div>Few-Shot Learning</div>
+                <div>Zero-Shot Learning</div>
+                <div>In-Context Learning</div>
+              </div>
+            </div>
+            <div class="tech-lower">
+              <div class="transformer-section">
+                <div class="box-title">
+                  <a target="_blank">Transformer</a>
+                </div>
+                <div class="transformer-content">
+                  <div>
+                    <a target="_blank">编码器</a>
+                  </div>
+                  <div>位置编码</div>
+                  <div>
+                    <a target="_blank">解码器</a>
+                  </div>
+                  <div>
+                    <a target="_blank">自注意力</a>
+                  </div>
+                  <div>
+                    <a target="_blank">Tokenization</a>
+                  </div>
+                  <div>并行处理</div>
+                  <div>MoE架构</div>
+                  <div>Flash Attention</div>
+                  <div>Multi-Query Attention</div>
+                  <div>Speculative Decoding</div>
+                </div>
+              </div>
+              <div class="transformer-variants">
+                <div class="variant-box box-bg">ViT (Vision Transformer)</div>
+                <div class="variant-box box-bg">
+                  DiT (Diffusion Transformer)
+                </div>
+                <div class="variant-box box-bg">Mamba/SSM (状态空间模型)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 基础层 -->
+      <div class="layer">
+        <div class="layer-title">基础层</div>
+        <div class="layer-content">
+          <div class="dashed-box horizontal-section">
+            <div class="box-title">海量数据</div>
+            <div class="horizontal-list">
+              <div>非/结构化数据</div>
+              <div>多模态数据</div>
+              <div>数据合成</div>
+              <div>
+                <a target="_blank">特征工程</a>
+              </div>
+              <div>数据清洗</div>
+              <div>数据标注</div>
+            </div>
+          </div>
+
+          <div class="dashed-box horizontal-section">
+            <div class="box-title">软件算法</div>
+            <div class="algo-columns">
+              <div class="algo-col">
+                <div class="col-header">
+                  <a target="_blank">机器学习</a>
+                </div>
+                <div>
+                  <a target="_blank">神经网络</a>
+                </div>
+                <div>
+                  <a target="_blank">深度学习</a>
+                </div>
+                <div>迁移学习</div>
+                <div>联邦学习</div>
+              </div>
+              <div class="algo-col">
+                <div class="col-header">
+                  <a target="_blank">学习方式</a>
+                </div>
+                <div>
+                  <a target="_blank">监督学习</a>
+                </div>
+                <div>
+                  <a target="_blank">无监督学习</a>
+                </div>
+                <div>
+                  <a target="_blank">强化学习</a>
+                </div>
+                <div>自监督学习</div>
+              </div>
+              <div class="algo-col">
+                <div class="col-header">
+                  <a target="_blank">核心算法</a>
+                </div>
+                <div>
+                  <a target="_blank">CNN</a>
+                </div>
+                <div>
+                  <a target="_blank">RNN</a>
+                </div>
+                <div>
+                  <a target="_blank">LSTM</a>
+                </div>
+                <div>GAN</div>
+                <div>VAE</div>
+              </div>
+              <div class="algo-col">
+                <div class="col-header">算法框架</div>
+                <div>PyTorch</div>
+                <div>TensorFlow</div>
+                <div>JAX</div>
+                <div>MindSpore</div>
+                <div>PaddlePaddle</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="dashed-box horizontal-section">
+              <div class="box-title">硬件算力</div>
+              <div class="horizontal-list">
+                <div class="horizontal-item">
+                  <a target="_blank">GPU/TPU/NPU</a>
+                </div>
+                <div class="horizontal-item">
+                  <a target="_blank">ASIC/FPGA</a>
+                </div>
+                <div class="horizontal-item">英伟达CUDA</div>
+                <div class="horizontal-item">华为昇腾</div>
+                <div class="horizontal-item">RDMA网络</div>
+                <div class="horizontal-item">GPU虚拟化</div>
+                <div class="horizontal-item">高速存储</div>
+                <div class="horizontal-item">集群技术</div>
+                <div class="horizontal-item">边缘计算</div>
+                <div class="horizontal-item">异构算力融合</div>
+              </div>
+            </div>
+          </div>
+          <div class="base-lower">
+            <div class="dashed-box horizontal-section">
+              <div class="box-title">基础学科</div>
+              <div class="horizontal-list">
+                <div class="horizontal-item">
+                  <a target="_blank">数学</a>
+                </div>
+                <div class="horizontal-item">
+                  <a target="_blank">计算机科学</a>
+                </div>
+                <div class="horizontal-item">
+                  <a target="_blank">物理学</a>
+                </div>
+                <div class="horizontal-item">统计学</div>
+                <div class="horizontal-item">语言学</div>
+                <div class="horizontal-item">
+                  <a target="_blank">心理学</a>
+                </div>
+                <div class="horizontal-item">生物学</div>
+                <div class="horizontal-item">
+                  <a target="_blank">神经科学</a>
+                </div>
+                <div class="horizontal-item">认知科学</div>
+                <div class="horizontal-item">逻辑学</div>
+                <div class="horizontal-item">哲学</div>
+                <div class="horizontal-item">控制论</div>
+                <div class="horizontal-item">机器人学</div>
+                <div class="horizontal-item">信息论</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 引用链接 -->
+      <div class="reference-link-container">
+        <div class="reference-link">
+          本图来源：<a href="https://aibook.ren/" target="_blank">AI全书</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
