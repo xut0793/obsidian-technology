@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "2c5fd443a06347dd",
+        "id": "455cdc6f884f7ccd",
         "type": "tabs",
         "children": [
           {
-            "id": "1031df6e4e008b6b",
+            "id": "87ef8fa3ca0292f1",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "02-Domain/AI/note/MCP.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "MCP"
+              "title": "新标签页"
             }
           }
         ]
@@ -178,13 +174,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "02-Domain/AI/note/MCP.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "MCP 的大纲"
+              "title": "大纲"
             }
           }
         ],
@@ -210,12 +205,13 @@
   },
   "active": "fbedf5261a2ce594",
   "lastOpenFiles": [
+    "README.md.md",
+    "02-Domain/AI/note/MCP.md",
     "新建文本文档.txt",
     "02-Domain/AI/note/Skills-engineering.md",
     "02-Domain/AI/note/Skills-usage.md",
     "02-Domain/AI/note/Skills-knowledge.md",
     "02-Domain/AI/note/Prompt.md",
-    "02-Domain/AI/note/MCP.md",
     "04-Asset/41-image/mcp_lifecycle.webp",
     "02-Domain/AI/asset/mcp_lifecycle.drawio",
     "Excalidraw/Drawing 2026-06-17 15.11.16.excalidraw.md",
@@ -235,7 +231,6 @@
     "02-Domain/AI/project/mcp-client-demo/mcp-client-typescript/package.json.94970241",
     "02-Domain/AI/project/mcp-client-demo/mcp-client-typescript/node_modules/@types",
     "02-Domain/AI/project/mcp-client-demo/mcp-client-typescript/package.json.4234651467",
-    "02-Domain/AI/project/mcp-client-demo/mcp-client-typescript/pnpm-lock.yaml",
     "02-Domain/AI/project/mcp-server-demo/weather-mcp/README.md",
     "04-Asset/41-image/mcp_architecture_data_flow.png",
     "04-Asset/41-image/mcp_architecture_role.png",
