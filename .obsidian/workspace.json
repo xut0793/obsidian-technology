@@ -11,10 +11,14 @@
             "id": "87ef8fa3ca0292f1",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "README"
             }
           }
         ]
@@ -174,12 +178,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "大纲"
+              "title": "README 的大纲"
             }
           }
         ],
@@ -203,9 +208,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "fbedf5261a2ce594",
+  "active": "87ef8fa3ca0292f1",
   "lastOpenFiles": [
-    "README.md.md",
+    "README.md",
     "02-Domain/AI/note/MCP.md",
     "新建文本文档.txt",
     "02-Domain/AI/note/Skills-engineering.md",
