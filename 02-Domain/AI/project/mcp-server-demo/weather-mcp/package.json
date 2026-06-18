@@ -1,0 +1,27 @@
+{
+  "name": "weather-mcp",
+  "version": "0.1.0",
+  "description": "weather query",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "weather-mcp": "./build/index.js"
+  },
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "tsc && node -e \"require('fs').chmodSync('build/weather.js', '755')\"",
+    "prepare": "npm run build",
+    "watch": "tsc --watch",
+    "inspector": "pnpm dlx @modelcontextprotocol/inspector node build/weather.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.29.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "typescript": "^6.0.3"
+  }
+}

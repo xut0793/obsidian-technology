@@ -1,0 +1,1 @@
+Skill 是撰写格式，Plugin 是分发格式。要跨仓库共享或打包多个 Skill，就封装成 Plugin。

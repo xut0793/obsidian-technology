@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "0928fd30789020f5",
+        "id": "2c5fd443a06347dd",
         "type": "tabs",
         "children": [
           {
-            "id": "dbbc15c643001442",
+            "id": "1031df6e4e008b6b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "02-Domain/AI/note/Prompt.md",
+                "file": "02-Domain/AI/note/MCP.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Prompt"
+              "title": "MCP"
             }
           }
         ]
@@ -178,21 +178,21 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "02-Domain/AI/note/Prompt.md",
+                "file": "02-Domain/AI/note/MCP.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Prompt 的大纲"
+              "title": "MCP 的大纲"
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 516.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -208,45 +208,55 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "dbbc15c643001442",
+  "active": "fbedf5261a2ce594",
   "lastOpenFiles": [
-    "01-Inbox/xapi 智能体构想.md",
-    "02-Domain/AI/roadmap.md",
-    "02-Domain/AI/note/Skills.md",
-    "02-Domain/AI/note/A2A.md",
-    "02-Domain/AI/note/MCP.md",
-    "02-Domain/AI/note/RAG.md",
+    "新建文本文档.txt",
+    "02-Domain/AI/note/Skills-engineering.md",
+    "02-Domain/AI/note/Skills-usage.md",
+    "02-Domain/AI/note/Skills-knowledge.md",
     "02-Domain/AI/note/Prompt.md",
+    "02-Domain/AI/note/MCP.md",
+    "04-Asset/41-image/mcp_lifecycle.webp",
+    "02-Domain/AI/asset/mcp_lifecycle.drawio",
+    "Excalidraw/Drawing 2026-06-17 15.11.16.excalidraw.md",
+    "Excalidraw/Drawing 2026-06-16 14.34.47.excalidraw.md",
+    "Excalidraw",
+    "02-Domain/AI/roadmap.md",
+    "04-Asset/41-image/AI全景图.png.EdCwZz",
+    "02-Domain/AI/note/Loop Engineering.md",
+    "02-Domain/AI/note/A2A.md",
+    "02-Domain/AI/note/AG-UI.md",
+    "04-Asset/41-image/the-agent-protocol-stack.jpg",
+    "04-Asset/41-image/ag-ui.jpg",
+    "04-Asset/41-image/ag-ui.webp",
+    "04-Asset/41-image/未确认 62653.crdownload",
+    "02-Domain/AI/project/mcp-client-demo/tsconfig.json",
+    "02-Domain/AI/project/mcp-client-demo/mcp-client-typescript/index.ts",
+    "02-Domain/AI/project/mcp-client-demo/mcp-client-typescript/package.json.94970241",
+    "02-Domain/AI/project/mcp-client-demo/mcp-client-typescript/node_modules/@types",
+    "02-Domain/AI/project/mcp-client-demo/mcp-client-typescript/package.json.4234651467",
+    "02-Domain/AI/project/mcp-client-demo/mcp-client-typescript/pnpm-lock.yaml",
+    "02-Domain/AI/project/mcp-server-demo/weather-mcp/README.md",
+    "04-Asset/41-image/mcp_architecture_data_flow.png",
+    "04-Asset/41-image/mcp_architecture_role.png",
+    "02-Domain/AI/note/Plugin.md",
+    "01-Inbox/接口种类-同步-异步.md",
+    "02-Domain/AI/note/AGENTS.md.md",
+    "().md",
+    "02-Domain/AI/todo.md",
+    "01-Inbox/Inbox.md",
+    "01-Inbox/xapi 智能体构想.md",
+    "04-Asset/41-image/skill-execute-flow.jpg",
+    "04-Asset/41-image/skill-and-context-window.jpg",
+    "04-Asset/41-image/skill-execute-flow.webp",
+    "04-Asset/41-image/skill-and-context-window.webp",
+    "02-Domain/AI/note/Agent.md",
+    "02-Domain/AI/note/RAG.md",
     "01-Inbox/如果你无法简洁找表达你的想法，那只说明你还不够了解它.md",
     "01-Inbox/阿里内网万言离职书《置身钉内》原文.md",
     "02-Domain/python/note/结合 AI 的接口自动化项目构想.md",
     "02-Domain/python/note/API接口自动化项目架构.md",
-    "02-Domain/python/note/pytest.md",
-    "02-Domain/python/note/requsts 统一封装注意事项.md",
-    "04-Asset/42-template/template-tech-note.md",
-    "02-Domain/python/note",
-    "2026-05-30.md",
-    "README.md.md",
-    "01-Inbox/Inbox.md",
-    "未命名.base",
-    "01-Inbox/如何学习一门编程语言.md",
-    "00-Home/home.md",
     "未命名.canvas",
-    "Excalidraw/Drawing 2026-05-29 16.54.59.excalidraw.md",
-    "02-Domain/AI/project/ai-technology-structure-diagram/diagram.bak.html",
-    "02-Domain/AI/project/ai-technology-structure-diagram/diagram copy.html",
-    "02-Domain/AI/project/ai-technology-structure-diagram/arch.css",
-    "02-Domain/AI/project/ai-technology-structure-diagram/diagram.html",
-    "02-Domain/AI/project/ai-technology-structure-diagram",
-    "02-Domain/AI/project/ai-",
-    "02-Domain/AI/project/新建文件夹",
-    "Excalidraw/Drawing 2026-05-27 16.59.36.excalidraw.md",
-    "Excalidraw/Drawing 2026-05-27 16.06.27.excalidraw.md",
-    "Excalidraw",
-    "02-Domain/AI/asset/未命名.canvas",
-    "01-Inbox/依打卡 APP.md",
-    "01-Inbox/程序设计是组装代码，系统设计是组装服务.md",
-    "01-Inbox/后端学习内容.md",
-    "学习/TODO.md"
+    "02-Domain/AI/asset/未命名.canvas"
   ]
 }
